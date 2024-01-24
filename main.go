@@ -51,6 +51,11 @@ func execInput(input string) error {
 			return errors.New("usage: mkdir <directory>")
 		}
 		return command.MakeDirectory(args[1])
+	case "mv":
+		if len(args) < 3 {
+			return errors.New("usage: mv <source> <destination>")
+		}
+		return command.MoveFileOrDirectory(args[1], args[2])
 	case "exit":
 		os.Exit(0)
 	}
