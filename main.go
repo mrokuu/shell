@@ -1,25 +1,45 @@
 package main
 
 import (
-	"bufio"
 	"errors"
 	"fmt"
+	"github.com/peterh/liner"
 	"os"
 	"os/exec"
 	"shell/command"
 	"strings"
 )
 
+//func main() {
+//	reader := bufio.NewReader(os.Stdin)
+//	for {
+//		fmt.Print("> ")
+//		input, err := reader.ReadString('\n')
+//		if err != nil {
+//			fmt.Fprintln(os.Stderr, err)
+//		}
+//
+//		if err = execInput(input); err != nil {
+//			fmt.Fprintln(os.Stderr, err)
+//		}
+//	}
+//}
+
 func main() {
-	reader := bufio.NewReader(os.Stdin)
+	line := liner.NewLiner()
+	defer line.Close()
+
+	line.SetCtrlCAborts(true)
+
 	for {
-		fmt.Print("> ")
-		input, err := reader.ReadString('\n')
+		input, err := line.Prompt("> ")
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
 		}
 
-		if err = execInput(input); err != nil {
+		line.AppendHistory(input)
+
+		if err := execInput(input); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 		}
 	}
