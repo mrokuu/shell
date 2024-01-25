@@ -4,6 +4,7 @@ ls
 rm
 mkdir
 mv ( mv file.txt new_folder/)
+touch
 exit
 
 

@@ -76,6 +76,11 @@ func execInput(input string) error {
 			return errors.New("usage: mv <source> <destination>")
 		}
 		return command.MoveFileOrDirectory(args[1], args[2])
+	case "touch":
+		if len(args) < 2 {
+			return ErrNoPath
+		}
+		return command.Touch(args)
 	case "exit":
 		os.Exit(0)
 	}
