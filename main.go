@@ -83,6 +83,8 @@ func execInput(input string) error {
 		return command.Touch(args)
 	case "cat":
 		return command.CatCommand(args)
+	case "cp":
+		return command.CpCommand(args)
 	case "exit":
 		os.Exit(0)
 	}
