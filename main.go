@@ -81,6 +81,8 @@ func execInput(input string) error {
 			return ErrNoPath
 		}
 		return command.Touch(args)
+	case "cat":
+		return command.CatCommand(args)
 	case "exit":
 		os.Exit(0)
 	}
